@@ -8,7 +8,7 @@
           class="aspect-square w-10 h-10 rounded-md border border-blue-950 bg-white text-black text-center"
           :value="item.value"
           @keydown.prevent="onOtpChange"
-          @focus="(e) => (activeInput = item.id)"
+          @focus="onInputFocus(item.id)"
         />
       </div>
     </div>
@@ -16,30 +16,31 @@
 </template>
 
 <script setup lang="ts">
+// Types
+import type { IOTPValue } from "./otpTypes";
 // Utilities
 import { toEnglishDigits } from "~/utils/numbers";
 
+// Config
 const digitCount = 5;
 
-interface IOTPValue {
-  id: number;
-  value: string | number;
-}
+// Refs
 const otpValue = ref<IOTPValue[]>([
   ...new Array(digitCount).fill("").map((_, i) => ({ id: i, value: "" })),
 ]);
-
 const inputsRef = ref<(Element | ComponentPublicInstance)[]>([]);
 const activeInput = ref<number>(0);
 
+// Methods
 const focusOnInput = () => {
+  const firstEmpty = otpValue.value.find((item) => item.value === "");
+
+  if (firstEmpty && firstEmpty.id < activeInput.value)
+    activeInput.value = firstEmpty.id;
+
   const target = inputsRef.value[activeInput.value] as HTMLInputElement;
   target.focus();
 };
-
-onMounted(() => {
-  focusOnInput();
-});
 
 // Event handlers
 const onOtpChange = (e: Event) => {
@@ -59,4 +60,14 @@ const onOtpChange = (e: Event) => {
 
   focusOnInput();
 };
+
+const onInputFocus = (id: number) => {
+  activeInput.value = id;
+  focusOnInput();
+};
+
+// Lifecycles
+onMounted(() => {
+  focusOnInput();
+});
 </script>
