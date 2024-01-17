@@ -2,10 +2,20 @@
   <div class="w-full">
     <!-- OTP Input -->
     <div class="w-fit flex justify-center items-center gap-2 mx-auto">
-      <div v-for="item in otpValue" :key="item.id">
+      <div
+        v-for="item in otpValue"
+        :key="item.id"
+        class="relative overflow-hidden"
+      >
+        <label
+          :for="item.id.toString()"
+          class="otp-label absolute inset-0 flex justify-center items-center animate-ping"
+          >{{ item.value }}</label
+        >
         <input
+          :id="item.id.toString()"
           :ref="(r) => inputsRef.push(r!)"
-          class="aspect-square w-10 h-10 rounded-md border border-blue-950 bg-white text-black text-center"
+          class="aspect-square w-10 h-10 rounded-md border border-blue-950 bg-white text-transparent text-center"
           :value="item.value"
           @keydown.prevent="onOtpChange"
           @focus="onInputFocus(item.id)"
@@ -71,3 +81,17 @@ onMounted(() => {
   focusOnInput();
 });
 </script>
+
+<style scoped>
+.otp-label:not(:empty) {
+  top: 100%;
+  animation: slide-in 0.5s forwards ease;
+  transition: all 0.5s ease;
+}
+
+@keyframes slide-in {
+  to {
+    top: 0;
+  }
+}
+</style>
