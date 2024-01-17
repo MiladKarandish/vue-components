@@ -85,8 +85,7 @@ onMounted(() => {
 <style scoped>
 .otp-label:not(:empty) {
   top: 100%;
-  animation: slide-in 0.5s forwards ease;
-  transition: all 0.5s ease;
+  animation: slide-in 0.1s forwards ease-in;
 }
 
 @keyframes slide-in {
