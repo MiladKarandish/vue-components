@@ -1,0 +1,49 @@
+<template>
+  <div class="w-full">
+    <!-- OTP Input -->
+    <div
+      class="w-fit flex justify-center items-center gap-2 mx-auto"
+      tabindex="1"
+      @focus="onOtpFocus"
+    >
+      <input
+        v-for="(_, i) in [...new Array(digitCount)]"
+        :key="i"
+        :ref="(r) => inputsRef.push(r!)"
+        class="aspect-square w-10 h-10 inline-flex justify-center items-center rounded-md border border-blue-950 bg-white text-black"
+        contenteditable
+        :value="otpValue[i]"
+        @keydown="onOtpChange"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { toEnglishDigits } from "~/utils/numbers";
+
+const digitCount = 5;
+const otpValue = ref<string[]>([]);
+const inputsRef = ref<(Element | ComponentPublicInstance)[]>([]);
+
+// Event handlers
+const onOtpFocus = () => {};
+const onOtpChange = (e: Event) => {
+  const event = e as KeyboardEvent;
+
+  const key = toEnglishDigits(event.key);
+  const exp = /\d/;
+  const inputs = inputsRef.value as HTMLInputElement[];
+
+  if (exp.test(key)) {
+    if (otpValue.value.length >= digitCount) {
+      otpValue.value[digitCount - 1] = key;
+    } else {
+      otpValue.value.push(key);
+    }
+  } else if (key === "Backspace") otpValue.value.pop();
+
+  console.log(inputs[otpValue.value.length]);
+  inputs[otpValue.value.length].focus();
+};
+</script>

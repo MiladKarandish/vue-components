@@ -1,0 +1,33 @@
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  background-color: #e3e3e3;
+  font-family: dana;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+*::-webkit-scrollbar {
+  width: 11px;
+  background-color: #dddddd59;
+}
+
+*::-webkit-scrollbar-thumb {
+  min-height: 3rem;
+  border: 3px solid rgba(0, 0, 0, 0);
+  border-radius: 999px;
+  background-clip: padding-box;
+  background-color: #aaaaaa;
+}
+
+/* Image reset */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -1,0 +1,7 @@
+{
+  "platform": "docker",
+  "port": 3000,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZmE4ZTZlNTUwNDJlZjAwMThlM2VhMmEiLCJpYXQiOjE2Njg4NjI5NTR9.zXgtn3PwncxnsZ2kPJa4LNnh7v45gkSiHpkDQLzaC_U",
+  "region": "iran",
+  "app": "payment"
+}

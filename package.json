@@ -1,0 +1,26 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@dotlottie/player-component": "^2.7.5",
+    "@mdi/font": "^7.4.47",
+    "@nuxt/eslint-config": "^0.2.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@nuxtjs/tailwindcss": "^6.10.4",
+    "@pinia/nuxt": "^0.5.1",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "nuxt": "^3.9.1",
+    "nuxt-material-design-icons-iconfont": "^1.0.2",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.10",
+    "vue-router": "^4.2.5"
+  }
+}
